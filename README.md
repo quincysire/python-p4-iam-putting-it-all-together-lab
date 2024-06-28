@@ -76,8 +76,8 @@ Your `User` model should also:
 
 - incorporate `bcrypt` to create a secure password. Attempts to access the
   `password_hash` should be met with an `AttributeError`.
-- constrain the user's username to be **present** and **unique** (no two users
-  can have the same username).
+- validate the user's username to ensure that it is **present** and **unique**
+  (no two users can have the same username).
 - **have many** recipes.
 
 Next, create a `Recipe` model with the following attributes:
@@ -88,13 +88,10 @@ Next, create a `Recipe` model with the following attributes:
 - `instructions` that is a `String` type.
 - `minutes_to_complete` that is an `Integer` type.
 
-Add database constraints for the `Recipe` model:
+Add validations for the `Recipe` model:
 
-Your `Recipe` model should also:
-
-- constrain the `title` to be present.
-- constrain the `instructions` to be present and at least 50 characters long, 
-alternately you may use a custom validation.
+- `title` must be present.
+- `instructions` must be present and at least 50 characters long.
 
 Run the migrations after creating your models. You'll need to run
 `flask db init` before running `flask db revision autogenerate` or
@@ -186,7 +183,7 @@ should also be able to test this in the React application by logging in via the
 login form.
 
 ### Logout Feature
-
+  
 Users can log into our app! 🎉 Now, let's give them a way to log out.
 
 Handle logout by implementing a `DELETE /logout` route. It should:
